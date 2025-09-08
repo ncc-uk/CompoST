@@ -12,6 +12,12 @@ Compost can be installed into an environemnt using pip, as per below.
 
 	pip install git+https://github.com/ncc-uk/CompoST.git
 	
+or with specific version:
+
+.. code-block:: bash
+
+	pip install git+https://github.com/ncc-uk/CompoST.git@v0.8.2
+	
 The recommended import to a Python script looks as follows:
 
 .. code-block:: Python
