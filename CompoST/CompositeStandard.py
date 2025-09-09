@@ -168,9 +168,11 @@ class CompositeDB(BaseModel):
     allMaterials: Optional[list['Material']] = Field(default=None) #List of "Material" objects - all = exhaustive list
     allDefects: Optional[list['Defect']] = Field(default=None) # list of all defects
     allTolerances: Optional[list['Tolerance']] = Field(default = None) # list of all Tolerances
-    fileMetadata: FileMetadata = Field(default = FileMetadata(author=get_author())) #list of all "axisSystems" objects = exhaustive list
     allSimulations: Optional[list['SimulationData']] = Field(default = None) #List of simulation data objects
     allManufMethods: Optional[list['ManufMethod']] = Field(default=None) #List of all manufacturing methods involved
+
+    #keep this last, so Metadata remain at bottom of the file
+    fileMetadata: FileMetadata = Field(default = FileMetadata(author=get_author())) #list of all "axisSystems" objects = exhaustive list
 
 class ManufMethod(CompositeDBItem):
 
@@ -183,7 +185,7 @@ class FilamentWinding(ManufMethod):
 
     windingPath: Optional['Spline'] = Field(default=None) #Spline defined path of material, as wound on the mandrel
     meridian: Optional['Spline'] = Field(default=None) #2D cross section of PV (assumes axisymmetry) - if this shape is revolved it should produce the PV shape.
-    steppedMandre: Optional['Spline'] = Field(default=None) # for first ply this is equivalent to meridian, then stepped mandrel defines the outermost shape including built-up material
+    steppedMandrel: Optional['Spline'] = Field(default=None) # for first ply this is equivalent to meridian, then stepped mandrel defines the outermost shape including built-up material
     xMin: Optional[float] = Field(default=None) #relevant for hoop layers, defines start point for winding (minimum x-direction limit)
     xMax: Optional[float] = Field(default=None) #relevant for hoop layers, defines start point for winding (maximum x-direction limit)
     layerType: Optional[str] = Field(default=None) #hoop/helical-geodesic/helical-nongeodesic  TODO make this into prescribed keywords and force selection of those only
