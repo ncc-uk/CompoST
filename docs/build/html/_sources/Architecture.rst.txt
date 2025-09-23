@@ -61,6 +61,12 @@ Object definitions
 	:param deactivate_stageID: int - this object is not relevant after this stage, either it has been superceeded or it's purpose was fullfilled
 	:param active: boolean - on default "True", can be turned "False" to indicate this is no longer representative of up-to-date part
 	:param ID: int - used for references between objects
+	
+	One extra parameter can be passed to all objects that inherit from `CompositeDBItem`. The `mainCompoST` parameter is not stored, not serialized, but is used to automatically add `ID` and iterate the maxID within `mainCompoST`. 
+	
+	:param mainCompoST: CompositeDB - main database this object belongs to. This is not stored, only temporarily used to assign and iterate IDs.
+	
+	
 
 .. py:function:: CompositeStandard.SimulationData(CompositeDBItem)
 

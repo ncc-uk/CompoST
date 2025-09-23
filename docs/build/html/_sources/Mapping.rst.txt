@@ -34,6 +34,24 @@ Every object belonging to :py:meth:`~CompositeStandard.CompositeDBItem.get` fami
 
 IDs are not compulsory for any object, but it is highly recommended that most objects are given IDs, as that will facilitaty any re-use. Exceptions are objects that will definitely not see reuse, such as point only existing to create a complex spline.
 
+Any object of the :py:meth:`~CompositeStandard.CompositeDBItem.get` can be given additional parameter `mainCompoST`: this is the :py:meth:`~CompositeStandard.CompositeDB.get` the object will be appended to eventually. By passing this parameter maxID in the passed object is iterated and ID is assigned to the newly initiated object.
+
+.. code-block:: python
+
+	from CompoST import CompositeStandard as cs
+	
+	PLY = cs.Ply(mainCompoST=D) #Where D is CompoST database object
+	
+	
+Alternatively user can still chose to do this manually, which is the legacy method. The automatic ID method will only be triggered if no ID is provided and `mainCompoST` is specified.
+
+.. code-block:: python
+
+	from CompoST import CompositeStandard as cs
+	
+	PLY = cs.Ply(ID= D.fileMetadata.maxID +1) #Where D is CompoST database object
+	D.fileMetadata.maxID += 1
+
 
 Duplication of properties
 -------------------------

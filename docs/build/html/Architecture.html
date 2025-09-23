@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Architecture &#8212; Composite Standard (CompoST) 0.9.0 documentation</title>
+    <title>Architecture &#8212; Composite Standard (CompoST) 0.9.7 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
     
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="Requirements.html" title="Requirements"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.9.7 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Architecture</a></li> 
       </ul>
     </div>  
@@ -118,6 +118,12 @@ Points are stored withing those, as referencing is not efficient</p>
 <li><p><strong>active</strong> – boolean - on default “True”, can be turned “False” to indicate this is no longer representative of up-to-date part</p></li>
 <li><p><strong>ID</strong> – int - used for references between objects</p></li>
 </ul>
+</dd>
+</dl>
+<p>One extra parameter can be passed to all objects that inherit from <cite>CompositeDBItem</cite>. The <cite>mainCompoST</cite> parameter is not stored, not serialized, but is used to automatically add <cite>ID</cite> and iterate the maxID within <cite>mainCompoST</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mainCompoST</strong> – CompositeDB - main database this object belongs to. This is not stored, only temporarily used to assign and iterate IDs.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -745,7 +751,7 @@ It should be deactivated when individual layers have been defined.</p>
         <li class="right" >
           <a href="Requirements.html" title="Requirements"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.9.7 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Architecture</a></li> 
       </ul>
     </div>

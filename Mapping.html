@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Mapping and references &#8212; Composite Standard (CompoST) 0.9.0 documentation</title>
+    <title>Mapping and references &#8212; Composite Standard (CompoST) 0.9.7 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
     
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="Logic.html" title="Logic and philosophy"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.9.7 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Mapping and references</a></li> 
       </ul>
     </div>  
@@ -70,6 +70,19 @@ noted at ply level (for example).</p>
 <h2>IDs<a class="headerlink" href="#ids" title="Permalink to this heading">¶</a></h2>
 <p>Every object belonging to <code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code> family can have ‘ID’ parameter attributed to it. This allows for referencing geometries and composite elements without re-creating them. The most common usage of this is when ‘CompositeStandard.Piece’ uses parameter splineRelimitation to signifcy edge of the composite piece, this parameter is simply and integer - ‘ID’, and corresponding spline can be found in GeometricElement`</p>
 <p>IDs are not compulsory for any object, but it is highly recommended that most objects are given IDs, as that will facilitaty any re-use. Exceptions are objects that will definitely not see reuse, such as point only existing to create a complex spline.</p>
+<p>Any object of the <code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code> can be given additional parameter <cite>mainCompoST</cite>: this is the <code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code> the object will be appended to eventually. By passing this parameter maxID in the passed object is iterated and ID is assigned to the newly initiated object.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">CompoST</span> <span class="kn">import</span> <span class="n">CompositeStandard</span> <span class="k">as</span> <span class="n">cs</span>
+
+<span class="n">PLY</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">Ply</span><span class="p">(</span><span class="n">mainCompoST</span><span class="o">=</span><span class="n">D</span><span class="p">)</span> <span class="c1">#Where D is CompoST database object</span>
+</pre></div>
+</div>
+<p>Alternatively user can still chose to do this manually, which is the legacy method. The automatic ID method will only be triggered if no ID is provided and <cite>mainCompoST</cite> is specified.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">CompoST</span> <span class="kn">import</span> <span class="n">CompositeStandard</span> <span class="k">as</span> <span class="n">cs</span>
+
+<span class="n">PLY</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">Ply</span><span class="p">(</span><span class="n">ID</span><span class="o">=</span> <span class="n">D</span><span class="o">.</span><span class="n">fileMetadata</span><span class="o">.</span><span class="n">maxID</span> <span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#Where D is CompoST database object</span>
+<span class="n">D</span><span class="o">.</span><span class="n">fileMetadata</span><span class="o">.</span><span class="n">maxID</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
 </section>
 <section id="duplication-of-properties">
 <h2>Duplication of properties<a class="headerlink" href="#duplication-of-properties" title="Permalink to this heading">¶</a></h2>
@@ -142,7 +155,7 @@ parameter for a specific ply.</p>
         <li class="right" >
           <a href="Logic.html" title="Logic and philosophy"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.9.7 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Mapping and references</a></li> 
       </ul>
     </div>

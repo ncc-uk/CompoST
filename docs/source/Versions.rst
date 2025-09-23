@@ -51,3 +51,8 @@ Since this results in some changes to existent classess, it is good time to clea
 is almost never benefit to this methodology as compared to direclyt referencing the spline under 'splineRelimitation', which stores copy of the object.
 
 0.9 is unlikely to be compatible with 0.8 files, use if no legacy files are used in project.
+
+0.9.7
+-----
+
+Automated ID generation option has been added. Should not affect existent workflows.
