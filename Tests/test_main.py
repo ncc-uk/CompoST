@@ -133,8 +133,8 @@ def create_example():
     D.allTolerances.append(tl4) 
 
     #Drape simulation #TODO more complex example - includes splines, lines, etc... will need to be added to re-link function
-    ds1 = cs.DrapingSimulation(initialDrapePoint=p1,ID=D.fileMetadata.maxID+1)
-    D.fileMetadata.maxID += 1
+    #Also testing streamlined option of assigning IDs (through mainCompoST passing)
+    ds1 = cs.DrapingSimulation(initialDrapePoint=p1,mainCompoST=D)
     D.allSimulations.append(ds1) 
 
     #manufMethod -- TODO add meridian and windingPath -- these will need to be added to the list in Re-link
@@ -166,8 +166,8 @@ def create_example():
     D.allDefects.append(dl)
     
     #Defect applied on whole part for lack of definition
-    bd = cs.BoundaryDeviation(avDeviation=13,ID=D.fileMetadata.maxID+1,stageID=ln)
-    D.fileMetadata.maxID += 1
+    #Also testing streamlined option of assigning IDs (through mainCompoST passing)
+    bd = cs.BoundaryDeviation(avDeviation=13,mainCompoST=D,stageID=ln)
     D.allDefects.append(bd)
 
 

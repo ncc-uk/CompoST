@@ -10,7 +10,7 @@ import math
 import os
 
 from enum import Enum
-from pydantic import BaseModel, Field, TypeAdapter
+from pydantic import BaseModel, Field, TypeAdapter, PrivateAttr
 from pydantic.config import ConfigDict
 
 import json
@@ -18,7 +18,7 @@ from jsonic import serialize, deserialize
 
 import CompoST.Utilities
 
-#### VERSION 0.9.6 ####
+#### VERSION 0.9.7 ####
 #https://github.com/National-Composites-Centre/CompoST
 
 #documentation link in the repository Readme
@@ -32,6 +32,43 @@ def get_author():
         author = ""
     return(author)
 
+class FileMetadata(BaseModel):
+    #the below might be housed in specialized class
+    lastModified: Optional[str] = Field(default=None) #Automatically refresh on save - string for json parsing
+    lastModifiedBy: Optional[str] = Field(default=None) #String name
+    author: Optional[str] = Field(default=None) #String Name
+    version: Optional[str] = Field(default= "0.9.7") #eg. - type is stirng now, for lack of better options
+    layupDefinitionVersion: Optional[str] = Field(default=None)
+
+    #external file references - separate class?
+    cadFile: Optional[str] = Field(default=None)
+    cadFilePath: Optional[str] = Field(default=None)
+
+    maxID: int = Field(default =0)
+
+    Requirements: Optional[dict] = Field(default=None) #very much bespoke for product at hand
+
+class CompositeDB(BaseModel):
+
+    #model_config = ConfigDict(title='Main')
+    name: str = Field(default = "test")
+
+    #All elements and all geometry are all stored here and used elsewhere as refrence
+    #Points are stored withing those, as referencing is not efficient
+
+    allComposite: Optional[list['CompositeElement']] = Field(default=None)   #List of "CompositeElement" type objects
+    allEvents: Optional[list] = Field(default=None) #List of "events" objects - all = exhaustive list
+    allGeometry: Optional[list['GeometricElement']] = Field(default=None) # list of "GeometricElement" objects - all = exhaustive list
+    allStages: Optional[list] = Field(default=None) #??? manuf process - all = exhaustive list
+    allMaterials: Optional[list['Material']] = Field(default=None) #List of "Material" objects - all = exhaustive list
+    allDefects: Optional[list['Defect']] = Field(default=None) # list of all defects
+    allTolerances: Optional[list['Tolerance']] = Field(default = None) # list of all Tolerances
+    allSimulations: Optional[list['SimulationData']] = Field(default = None) #List of simulation data objects
+    allManufMethods: Optional[list['ManufMethod']] = Field(default=None) #List of all manufacturing methods involved
+
+    #keep this last, so Metadata remain at bottom of the file
+    fileMetadata: FileMetadata = Field(default = FileMetadata(author=get_author())) #list of all "axisSystems" objects = exhaustive list
+
 class CompositeDBItem(BaseModel):
 
     memberName: Optional[str] = Field(default = None)
@@ -40,6 +77,23 @@ class CompositeDBItem(BaseModel):
     deactivate_stageID: Optional[int] = Field(default = None) #this object is not relevant after this stage - either it has been superceeded or it's purpose was fullfilled
     active: Optional[bool] = Field(default = True) #This can be turned to False to indicate this object does not represent the latest iteration of the part
     ID: Optional[int] = Field(default = None)
+
+    #The _mainCompoST is not serialized, it's only used for streamlined add assignment method
+    _mainCompoST: Optional['CompositeDB'] = PrivateAttr(default=None)
+
+    #For automated ID assignment
+    #For all objects that contain ID optional "mainCompoST" can be passed in which is the overall database this object will be appended to
+    #Passing "mainCompoST" will automatically iterate maxID in metadata and add new id to newly created object
+    def __init__(self, **data):
+        mainCompoST = data.pop("mainCompoST", None)
+        super().__init__(**data)
+        self._mainCompoST = mainCompoST
+
+        if mainCompoST is not None and self.ID is None:
+            mainCompoST.fileMetadata.maxID += 1
+            object.__setattr__(self, "ID", mainCompoST.fileMetadata.maxID)
+
+
 
 class SimulationData(CompositeDBItem):
 
@@ -137,42 +191,6 @@ class AxisSystem(GeometricElement):
         arbitrary_types_allowed = True
 
 
-class FileMetadata(BaseModel):
-    #the below might be housed in specialized class
-    lastModified: Optional[str] = Field(default=None) #Automatically refresh on save - string for json parsing
-    lastModifiedBy: Optional[str] = Field(default=None) #String name
-    author: Optional[str] = Field(default=None) #String Name
-    version: Optional[str] = Field(default= "0.9.6") #eg. - type is stirng now, for lack of better options
-    layupDefinitionVersion: Optional[str] = Field(default=None)
-
-    #external file references - separate class?
-    cadFile: Optional[str] = Field(default=None)
-    cadFilePath: Optional[str] = Field(default=None)
-
-    maxID: int = Field(default =0)
-
-    Requirements: Optional[dict] = Field(default=None) #very much bespoke for product at hand
-
-class CompositeDB(BaseModel):
-
-    #model_config = ConfigDict(title='Main')
-    name: str = Field(default = "test")
-
-    #All elements and all geometry are all stored here and used elsewhere as refrence
-    #Points are stored withing those, as referencing is not efficient
-
-    allComposite: Optional[list['CompositeElement']] = Field(default=None)   #List of "CompositeElement" type objects
-    allEvents: Optional[list] = Field(default=None) #List of "events" objects - all = exhaustive list
-    allGeometry: Optional[list['GeometricElement']] = Field(default=None) # list of "GeometricElement" objects - all = exhaustive list
-    allStages: Optional[list] = Field(default=None) #??? manuf process - all = exhaustive list
-    allMaterials: Optional[list['Material']] = Field(default=None) #List of "Material" objects - all = exhaustive list
-    allDefects: Optional[list['Defect']] = Field(default=None) # list of all defects
-    allTolerances: Optional[list['Tolerance']] = Field(default = None) # list of all Tolerances
-    allSimulations: Optional[list['SimulationData']] = Field(default = None) #List of simulation data objects
-    allManufMethods: Optional[list['ManufMethod']] = Field(default=None) #List of all manufacturing methods involved
-
-    #keep this last, so Metadata remain at bottom of the file
-    fileMetadata: FileMetadata = Field(default = FileMetadata(author=get_author())) #list of all "axisSystems" objects = exhaustive list
 
 class ManufMethod(CompositeDBItem):
 
@@ -497,6 +515,8 @@ def Save(CompositeDB,file,path="",overwrite=False):
                 out_file.write(json_str)
 
     return()
+
+
 
 #generate_json_schema('compostSchema.json')
 
