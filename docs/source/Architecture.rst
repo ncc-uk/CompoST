@@ -252,7 +252,8 @@ Object definitions
 	CAD shapes, for instace useful when using a 3D core/insert
 	
 	:param cadFile: str - file path to the part, or reference to PLM site
-	:param sourceSystem: `SourceSystem` -
+	:param sourceSystem: `SourceSystem` - the software used to generate 3D shape
+	:param location: str - relative or full path to the 3D file (bespoke local references, for instance for use in PLM, can be used here)
 	
 
 .. py:function:: CompositeStandard.Tolerance(CompositeDBItem)
