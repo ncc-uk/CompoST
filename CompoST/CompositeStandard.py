@@ -258,6 +258,7 @@ class SolidComponent(CompositeElement):
     #had shapes - for example when including 3D core
     cadFile: Optional[str] = Field(None)
     sourceSystem: Optional[SourceSystem] = Field(None) #SourceSystem object
+    location: Optional[str] = Field(None) 
 
 class EngEdgeOfPart(CompositeElement):
     #Engineering edge of part
