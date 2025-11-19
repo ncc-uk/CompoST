@@ -277,6 +277,7 @@ class Material(CompositeDBItem):
     v12: Optional[float] = Field(None)
     infoSource: Optional[str] = Field(None)
     density: Optional[float] = Field(None)
+    conductivity: Optional[float] = Field(None)
 
     #add other related values
     #might need sublacces for materials as relevant for manuf. processes. 
