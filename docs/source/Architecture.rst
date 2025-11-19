@@ -139,6 +139,7 @@ Object definitions
 	:param v12: float - poisson ratio in plane
 	:param infoSource: str - reference to source of the information
 	:param density: float 
+	:param conductivity: float
 	
 .. py:function:: CompositeStandard.GenericMaterial(Material)
 
