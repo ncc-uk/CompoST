@@ -268,16 +268,33 @@ class EngEdgeOfPart(CompositeElement):
     source: Optional['SourceSystem'] = Field(None) #defines which CAD system was this created in
     referenceGeometry: Optional[str] = Field(None) #reference to the name (string) of geometry that defines this in source CAD system
 
+class FailureCriteria(BaseModel):
+    #Can be used within any Material to specify failure criteria
+
+    Xt: Optional[float] = Field(None) #Tensile stress in principle direction (fibre direction usually)
+    Yt: Optional[float] = Field(None) #Tensile stress in transverse direction
+    Xc: Optional[float] = Field(None) #Compressive stress in principle direction (fibre direction usually)
+    Yc: Optional[float] = Field(None) #Compressive stress in transverse direction
+    tau: Optional[float] = Field(None) #Shear strength 
+
+
 class Material(CompositeDBItem):
     #this will be extended over time - it should allow for storing different level materials (i.e. stack vs ply)
     E1: Optional[float] = Field(None)
     E2: Optional[float] = Field(None)
     G12: Optional[float] = Field(None)
+    G13: Optional[float] = Field(None)
     G23: Optional[float] = Field(None)
     v12: Optional[float] = Field(None)
+    v23: Optional[float] = Field(None)
+    v13: Optional[float] = Field(None)
     infoSource: Optional[str] = Field(None)
     density: Optional[float] = Field(None)
     conductivity: Optional[float] = Field(None)
+    failureCriteria: Optional[FailureCriteria] = Field(None)
+    a1: Optional[float] = Field(None) #thermal expansion in principle direction
+    a2: Optional[float] = Field(None) #thermal expansion in transverse direction
+    a3: Optional[float] = Field(None) #thermal expansion in out-of-plane direction
 
     #add other related values
     #might need sublacces for materials as relevant for manuf. processes. 
@@ -293,10 +310,6 @@ class GenericMaterial(Material):
 class Tape(Material):
     thickness: Optional[float] = Field(None) # out of plane size
     width: Optional[float] = Field(None) #width of tape
-    Xt: Optional[float] = Field(None) #Tensile strenght in principle direction
-    Yt: Optional[float] = Field(None) #Tensile strenght in transverse direction
-    Xc: Optional[float] = Field(None) #Compressive strenght in principle direction
-    Yc: Optional[float] = Field(None) #Compressive strenght in transverse direction
     density_fibre: Optional[float] = Field(None) #density of the fibres
     density_resin: Optional[float] = Field(None) #density of the resin
     Vf: Optional[float] = Field(None) #volume fraction
