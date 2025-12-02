@@ -136,10 +136,17 @@ Object definitions
 	:param E2: float - young's modulus in secondary direction (in-plane)
 	:param G23: float - shear modulus
 	:param G12: float - interlaminar shear modulus
+	:param G13: float - shear modulus 
 	:param v12: float - poisson ratio in plane
+	:param v13: float - poisson ratio out-of-plane in principle direction
+	:param v23: gloat - poisson ratio out-of-plane in transverse direction
 	:param infoSource: str - reference to source of the information
 	:param density: float 
 	:param conductivity: float
+	:param failureCriteria: ``CompositeStandard.FailureCriteria`` - specialized failure criteria object
+	:param a1: float - thermal expansion in principle direction
+	:param a2: float - thermal expansion in transverse direction
+	:param a3: float - thermal expansion in out-of-plane direction
 	
 .. py:function:: CompositeStandard.GenericMaterial(Material)
 
@@ -284,15 +291,19 @@ Object definitions
 
     :param thickness: float - out of plane size
     :param width: float - width of tape
-    :param Xt: float - Tensile strenght in principle direction
-    :param Yt: float - Tensile strenght in transverse direction
-    :param Xc: float - Compressive strenght in principle direction
-    :param Yc: float - Compressive strenght in transverse direction
     :param density_fibre: float - density of the fibres
     :param density_resin: float - density of the resin
     :param Vf: float - volume fraction
     :param tow_count: int - number of tows in tape
     :param density_linear: float -  typically g/m density of individual fibre
+	
+.. py:function:: CompositeStandard.FailureCriteria(BaseModel)
+
+    :param Xt: float - Tensile strenght in principle direction
+    :param Yt: float - Tensile strenght in transverse direction
+    :param Xc: float - Compressive strenght in principle direction
+    :param Yc: float - Compressive strenght in transverse direction
+	:param tau: float - shear strength
 	
 The objects below are temporary definitions, that might still be subject to changes. Included for testing purposes.
 

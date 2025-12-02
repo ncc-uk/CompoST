@@ -238,10 +238,17 @@ to each other. However, if user fails to do so the object adjusts itself (at lea
 <li><p><strong>E2</strong> – float - young’s modulus in secondary direction (in-plane)</p></li>
 <li><p><strong>G23</strong> – float - shear modulus</p></li>
 <li><p><strong>G12</strong> – float - interlaminar shear modulus</p></li>
+<li><p><strong>G13</strong> – float - shear modulus</p></li>
 <li><p><strong>v12</strong> – float - poisson ratio in plane</p></li>
+<li><p><strong>v13</strong> – float - poisson ratio out-of-plane in principle direction</p></li>
+<li><p><strong>v23</strong> – gloat - poisson ratio out-of-plane in transverse direction</p></li>
 <li><p><strong>infoSource</strong> – str - reference to source of the information</p></li>
 <li><p><strong>density</strong> – float</p></li>
 <li><p><strong>conductivity</strong> – float</p></li>
+<li><p><strong>failureCriteria</strong> – <code class="docutils literal notranslate"><span class="pre">CompositeStandard.FailureCriteria</span></code> - specialized failure criteria object</p></li>
+<li><p><strong>a1</strong> – float - thermal expansion in principle direction</p></li>
+<li><p><strong>a2</strong> – float - thermal expansion in transverse direction</p></li>
+<li><p><strong>a3</strong> – float - thermal expansion in out-of-plane direction</p></li>
 </ul>
 </dd>
 </dl>
@@ -502,15 +509,27 @@ stored here with the appropriate <a class="reference internal" href="#CompositeS
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>thickness</strong> – float - out of plane size</p></li>
 <li><p><strong>width</strong> – float - width of tape</p></li>
-<li><p><strong>Xt</strong> – float - Tensile strenght in principle direction</p></li>
-<li><p><strong>Yt</strong> – float - Tensile strenght in transverse direction</p></li>
-<li><p><strong>Xc</strong> – float - Compressive strenght in principle direction</p></li>
-<li><p><strong>Yc</strong> – float - Compressive strenght in transverse direction</p></li>
 <li><p><strong>density_fibre</strong> – float - density of the fibres</p></li>
 <li><p><strong>density_resin</strong> – float - density of the resin</p></li>
 <li><p><strong>Vf</strong> – float - volume fraction</p></li>
 <li><p><strong>tow_count</strong> – int - number of tows in tape</p></li>
 <li><p><strong>density_linear</strong> – float -  typically g/m density of individual fibre</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="CompositeStandard.FailureCriteria">
+<span class="sig-prename descclassname"><span class="pre">CompositeStandard.</span></span><span class="sig-name descname"><span class="pre">FailureCriteria</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">BaseModel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CompositeStandard.FailureCriteria" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Xt</strong> – float - Tensile strenght in principle direction</p></li>
+<li><p><strong>Yt</strong> – float - Tensile strenght in transverse direction</p></li>
+<li><p><strong>Xc</strong> – float - Compressive strenght in principle direction</p></li>
+<li><p><strong>Yc</strong> – float - Compressive strenght in transverse direction
+:param tau: float - shear strength</p></li>
 </ul>
 </dd>
 </dl>

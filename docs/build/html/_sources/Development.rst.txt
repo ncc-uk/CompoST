@@ -38,6 +38,9 @@ The following function is very simple test that verifies that the expected numbe
 .. py:function:: NewFileComparison(CompoST)
 
 
+.. todo:: Add a function to test compatibility with older versions, allowing user to specify limits.
+
+
 Use Cases
 ---------
 
@@ -77,3 +80,11 @@ Tags should be pushed as follows
 .. code-block:: bash
 
 	git push origin branch_name --tags 
+	
+	
+To Do List
+----------
+
+The TODO's below should be specific. It should be clear what needs to be done to clear the TODO. These are included in the text throughtout the documentation, and automatically gathered here for complete list. This includes missing aspects of documentation, missing code functionality, missing checks...
+
+.. todolist::
