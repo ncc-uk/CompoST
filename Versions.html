@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Versions &#8212; Composite Standard (CompoST) 0.9.7 documentation</title>
+    <title>Versions &#8212; Composite Standard (CompoST) 0.10.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
     
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="Development.html" title="Development"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.9.7 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.10.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Versions</a></li> 
       </ul>
     </div>  
@@ -92,6 +92,15 @@ is almost never benefit to this methodology as compared to direclyt referencing 
 <h2>0.9.7<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
 <p>Automated ID generation option has been added. Should not affect existent workflows.</p>
 </section>
+<section id="id7">
+<h2>0.10.0<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<p>Fixed py-jsonic installation to 0.0.2 as newer version was causing issue with serialization to JSON. (Note: previously CompoST was installing newest version of py-jsonic, this will no longer be the case).</p>
+<p>If fresh installations of older versions cause problems it is recommended to manually uninstall py-jsonic and then install specific version:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>py-jsonic
+pip<span class="w"> </span>install<span class="w"> </span>py-jsonic<span class="o">==</span><span class="m">0</span>.0.2
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -112,6 +121,7 @@ is almost never benefit to this methodology as compared to direclyt referencing 
 <li><a class="reference internal" href="#id4">0.8.2</a></li>
 <li><a class="reference internal" href="#id5">0.9.0</a></li>
 <li><a class="reference internal" href="#id6">0.9.7</a></li>
+<li><a class="reference internal" href="#id7">0.10.0</a></li>
 </ul>
 </li>
 </ul>
@@ -160,7 +170,7 @@ is almost never benefit to this methodology as compared to direclyt referencing 
         <li class="right" >
           <a href="Development.html" title="Development"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.9.7 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.10.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Versions</a></li> 
       </ul>
     </div>

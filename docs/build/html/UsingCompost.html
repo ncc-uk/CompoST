@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>UsingCompost &#8212; Composite Standard (CompoST) 0.9.7 documentation</title>
+    <title>UsingCompost &#8212; Composite Standard (CompoST) 0.10.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
     
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="Introduction.html" title="Introduction"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.9.7 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.10.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">UsingCompost</a></li> 
       </ul>
     </div>  
@@ -67,6 +67,14 @@
 </div>
 <p>Libraries automatically installed with CompoST: pydantic, jsonic ,numpy</p>
 <p>“numpy” is required for generation of axis systems. “jsonic” is used for serializing and desirializing the objects into and from JSON. “pydantic” helps with class definitions and validations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On versions before 0.10.0 user might also have to re-install py-jsonic, see commands below. This is because CompoST was set to use newest version, but serialization using newer version broke. In later versions of CompoST, fixed old version of py-jsonic is being used and this fix is no longer required.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>py-jsonic
+pip<span class="w"> </span>install<span class="w"> </span>py-jsonic<span class="o">==</span><span class="m">0</span>.0.2
+</pre></div>
+</div>
 </section>
 <section id="loading-files">
 <h2>Loading Files<a class="headerlink" href="#loading-files" title="Permalink to this heading">¶</a></h2>
@@ -206,7 +214,7 @@ that it becomes human readable to some extent.</p>
         <li class="right" >
           <a href="Introduction.html" title="Introduction"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.9.7 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Composite Standard (CompoST) 0.10.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">UsingCompost</a></li> 
       </ul>
     </div>

@@ -56,3 +56,15 @@ is almost never benefit to this methodology as compared to direclyt referencing 
 -----
 
 Automated ID generation option has been added. Should not affect existent workflows.
+
+0.10.0
+------
+
+Fixed py-jsonic installation to 0.0.2 as newer version was causing issue with serialization to JSON. (Note: previously CompoST was installing newest version of py-jsonic, this will no longer be the case).
+
+If fresh installations of older versions cause problems it is recommended to manually uninstall py-jsonic and then install specific version:
+
+.. code-block:: bash
+
+	pip uninstall py-jsonic
+	pip install py-jsonic==0.0.2

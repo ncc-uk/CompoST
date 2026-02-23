@@ -29,7 +29,12 @@ Libraries automatically installed with CompoST: pydantic, jsonic ,numpy
 
 "numpy" is required for generation of axis systems. "jsonic" is used for serializing and desirializing the objects into and from JSON. "pydantic" helps with class definitions and validations.
 
+.. note:: On versions before 0.10.0 user might also have to re-install py-jsonic, see commands below. This is because CompoST was set to use newest version, but serialization using newer version broke. In later versions of CompoST, fixed old version of py-jsonic is being used and this fix is no longer required.
 
+.. code-block:: bash
+
+	pip uninstall py-jsonic
+	pip install py-jsonic==0.0.2
 
 
 Loading Files
