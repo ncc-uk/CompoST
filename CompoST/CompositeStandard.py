@@ -8,6 +8,7 @@ from numpy import (array, dot, arccos, clip)
 from numpy.linalg import norm
 import math
 import os
+from pathlib import Path
 
 from enum import Enum
 from pydantic import BaseModel, Field, TypeAdapter, PrivateAttr
@@ -487,8 +488,9 @@ def generate_json_schema(file_name:str):
 def Open(file,path=""):
     #Opens a CompoST file, currently the CompoST file should be same version as this script
 
-    with open(path+"\\"+file+".json","r") as in_file:
-        json_str= in_file.read()
+    file_path = Path(path) / f"{file}.json"
+    with file_path.open("r") as in_file:
+        json_str = in_file.read()
 
     #turn file into workable classes
     D = deserialize(json_str,string_input=True)
@@ -514,19 +516,20 @@ def Save(CompositeDB,file,path="",overwrite=False):
 
     #save as file
     #TODO interactive option for overwrite?
+    file_path = Path(path) / f"{file}.json"
     if overwrite == True:
 
-        print("saving as:",path+"\\"+file+".json")
-        with open(path+"\\"+file+".json", 'w') as out_file:
+        print("saving as:", file_path)
+        with file_path.open("w") as out_file:
             out_file.write(json_str)
 
     else:
-        if os.path.exists(path+"\\"+file+".json"):
-            print("file: "+path+"\\"+file+".json"+" already exists. To overwrite it, set overwrite parameter to True")
 
+        if file_path.exists():
+            print(f"file: {file_path} already exists. To overwrite it, set overwrite parameter to True")
         else:
-            print("saving as:",path+"\\"+file+".json")
-            with open(path+"\\"+file+".json", 'w') as out_file:
+            print("saving as:", file_path)
+            with file_path.open("w") as out_file:
                 out_file.write(json_str)
 
     return()

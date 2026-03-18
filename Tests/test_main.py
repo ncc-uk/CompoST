@@ -1,6 +1,7 @@
 import unittest
 import CompoST.CompositeStandard as cs
 import datetime
+from pathlib import Path
 
 #Tests don't come with pip installed repository
 
@@ -322,7 +323,8 @@ def testReLink(D):
         print("Error: Re-link error,the material with ID=11 was not propagated correctly to a piece ID=13.")    
 
     #re-save in the end for manual review (optional)
-    cs.Save(D,"test_save_review","C:\\temp",overwrite=True)
+    local_path = Path("C:/temp")
+    cs.Save(D,"test_save_review",local_path,overwrite=True)
 
     #TODO test re-link from initialDrapePoint point storage
 
@@ -338,10 +340,11 @@ class TestMainCompoST(unittest.TestCase):
     D = create_example()
 
     #save file in temp
-    cs.Save(D,"test_save","C:\\temp",overwrite=True)
+    local_path = Path("C:/temp")
+    cs.Save(D,"test_save",local_path,overwrite=True)
     
     #load file
-    D = cs.Open("test_save","C:\\temp")
+    D = cs.Open("test_save",local_path)
 
     #test initial file 
     def test_generation(self):
